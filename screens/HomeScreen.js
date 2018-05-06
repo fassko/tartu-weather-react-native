@@ -13,7 +13,7 @@ import {
 
 const cheerio = require('react-native-cheerio');
 
-var self
+let self
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -59,8 +59,6 @@ export default class HomeScreen extends React.Component {
 
     url = this.imgUrl + "?c=" + new Date()
 
-    console.log(url);
-
     this.setState({
       temperature: temperature,
       wind: wind,
@@ -91,7 +89,7 @@ export default class HomeScreen extends React.Component {
 }
 
 const {width, height} = Dimensions.get('window');
-const imageWidth = width * 0.9
+const imageWidth = width * 0.9;
 
 const styles = StyleSheet.create({
   container: {
