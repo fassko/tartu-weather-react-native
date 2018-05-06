@@ -12,7 +12,6 @@ export default class HomeScreen extends React.Component {
     headerStyle: {
       backgroundColor: '#1E4666'
     },
-
     headerRight: <Button title="Reload" onPress={() => {
       self.reloadData()
     }} />
@@ -64,14 +63,14 @@ export default class HomeScreen extends React.Component {
           <Text style={ styles.weatherData }>{this.state.temperature}</Text>
           <Text style={ styles.weatherData }>{this.state.wind}</Text>
         </View>
-        <View style={{ flex: 2 }}>
+        <View>
           <Image
             key={new Date()}
             source={{ uri: this.state.imgSource, headers: {Pragma: 'no-cache' } }}
             style={{width: 302, height: 242, resizeMode: Image.resizeMode.contain}}
              />
         </View>
-        <View style={{ flex: 1 }}>
+        <View>
           <Text style={styles.measuredTime}>{this.state.measuredTime}</Text>
         </View>
       </View>
@@ -83,14 +82,16 @@ export default class HomeScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
   },
   weatherDataContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    flex: 1
+    justifyContent: 'space-evenly',
+    height: 100
   },
   weatherData: {
     textAlign: 'center',
@@ -102,6 +103,7 @@ const styles = StyleSheet.create({
   measuredTime: {
     textAlign: 'center',
     fontSize: 10,
-    fontStyle: 'italic'
+    fontStyle: 'italic',
+    padding: 20
   }
 })
