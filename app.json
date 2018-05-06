@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "TartuWeather",
-    "description": "This project is really great.",
+    "name": "meteo Tartu",
+    "description": "Weather in Tartu, Estonia",
     "slug": "TartuWeather",
     "privacy": "public",
     "sdkVersion": "27.0.0",
@@ -21,7 +21,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.fassko.meteoTartu"
+    },
+    "android": {
+      "package": "com.fassko.meteoTartu"
     }
   }
 }

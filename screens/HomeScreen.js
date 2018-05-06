@@ -63,11 +63,11 @@ export default class HomeScreen extends React.Component {
           <Text style={ styles.weatherData }>{this.state.temperature}</Text>
           <Text style={ styles.weatherData }>{this.state.wind}</Text>
         </View>
-        <View style={{ height: 250 }}>
+        <View style={styles.imageContainer}>
           <Image
             key={new Date()}
             source={{ uri: this.state.imgSource, headers: {Pragma: 'no-cache' } }}
-            style={{width: 302, height: 242, resizeMode: Image.resizeMode.contain}}
+            style={styles.liveImage}
              />
         </View>
         <View>
@@ -99,6 +99,14 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
     padding: 20
+  },
+  imageContainer: {
+    height: 250
+  },
+  liveImage: {
+    width: 302, 
+    height: 242, 
+    resizeMode: Image.resizeMode.contain
   },
   measuredTime: {
     textAlign: 'center',
