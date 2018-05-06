@@ -8,6 +8,11 @@ var self
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     title: 'Tartu Weather',
+    headerTintColor: '#fff',
+    headerStyle: {
+      backgroundColor: '#1E4666'
+    },
+
     headerRight: <Button title="Reload" onPress={() => {
       self.reloadData()
     }} />
@@ -25,7 +30,7 @@ export default class HomeScreen extends React.Component {
 
     setInterval(() => {
       this.reloadData();
-    }, 10000);
+    }, 60000);
 
     this.reloadData();
   }
@@ -45,33 +50,30 @@ export default class HomeScreen extends React.Component {
 
     const measuredTime = $('.pageMain tbody tr:nth-child(7) td:nth-child(2) small i').text();
 
-    var url = 'http://meteo.physic.ut.ee/webcam/uus/pisike.jpg'
-    url += '?random=' + new Date().getTime()
-
-    console.log(url);
-    
-
     this.setState({
-      temperature: temperature, 
+      temperature: temperature,
       wind: wind,
       measuredTime: measuredTime,
-      imgSource: url});
+      imgSource: this.state.imgSource});
   }
 
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.weatherDataContainer}>
-          <Text>{this.state.temperature}</Text>
-          <Text>{this.state.wind}</Text>
+          <Text style={ styles.weatherData }>{this.state.temperature}</Text>
+          <Text style={ styles.weatherData }>{this.state.wind}</Text>
         </View>
-        <View>
-          <Image 
-            source={{ uri: this.state.imgSource }}
-            style={{width: 340, height: 400, resizeMode: Image.resizeMode.contain}}
+        <View style={{ flex: 2 }}>
+          <Image
+            key={new Date()}
+            source={{ uri: this.state.imgSource, headers: {Pragma: 'no-cache' } }}
+            style={{width: 302, height: 242, resizeMode: Image.resizeMode.contain}}
              />
         </View>
-        <Text>{this.state.measuredTime}</Text>
+        <View style={{ flex: 1 }}>
+          <Text style={styles.measuredTime}>{this.state.measuredTime}</Text>
+        </View>
       </View>
     );
   }
@@ -82,11 +84,24 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
   },
   weatherDataContainer: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1
+  },
+  weatherData: {
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    fontSize: 30,
+    fontWeight: 'bold',
+    padding: 20
+  },
+  measuredTime: {
+    textAlign: 'center',
+    fontSize: 10,
+    fontStyle: 'italic'
   }
 })
