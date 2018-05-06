@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+
 import {
-  StyleSheet, Text, Dimensions, View, Button
+  StyleSheet
 } from 'react-native';
+
 import { StackNavigator } from 'react-navigation';
 
 import HomeScreen from './screens/HomeScreen';
